@@ -5,17 +5,19 @@ Escan Antivirus for Linux has real-time protection program `rtscanner` run as sy
 1. `rtscanner` failed to quarantine a file that has name **>= 253** characters (max file name's length on Linux is 255). This program uses command `mv` to move file to quarantine folder.
 2. `rtscanner` uses dangerous function `system` with unsanitized data.
 
-![image](https://github.com/user-attachments/assets/b63d71ed-2c7e-49db-9d57-efe79099fd51)
+![image_2025-01-18_11-08-53](https://github.com/user-attachments/assets/616d5977-31dd-4668-8ff1-478fde87d53e)
+
 
 3. By default, `/tmp/` and `/home/` are being monitored
 
-![image](https://github.com/user-attachments/assets/f427f130-c92e-43cd-a3d2-db708cc46bb2)
+![image_2025-01-18_11-08-53 (2)](https://github.com/user-attachments/assets/32487a13-d54b-4cf1-8dd4-6b699b5a636f)
+
 
 An attacker can send any malicious file with crafted file name. As soon as crafted file writes into these folders, quarantine mechanism executes and malicious code command is executed with system's privilege.
 
 In demotration bellow, I sent compressed file that contains malicious file to victim's machine. By default, compressed files are not being scanned by real-time scanner. Malicious code executes as soon as user uncompress downloaded file.
 
-![image](https://github.com/user-attachments/assets/962d5187-a847-4131-9945-6fd254c7d39b)
+![image_2025-01-18_11-08-53 (3)](https://github.com/user-attachments/assets/a824dc12-9007-40b3-aa92-f0c374f8aa7a)
 
 *Important notes*:
 - When decompress using `Extract here` feature, program `engrampa` extracts internal file into a folder if there's no folder. The format will be `<name of compressed file> <suffix>` where suffix is a number, like `(2)`, `(3)`. Meanwhile real-time scanner adds folder `<name of compressed file>` to **inotify**'s watch list. This is a logic bug in scanner's logic. Therefore, compressed file delivered to victim must contains internal folder that has the same name with zip file.
@@ -47,25 +49,27 @@ with open("/tmp/" + NAME, "w") as f:
 
 2. Create compressed zip file that contain crafted file and move it to web server.
 
-![image](https://github.com/user-attachments/assets/1f1a110d-f61f-421e-9d80-ee055a30bccf)
+![image_2025-01-18_11-08-53 (4)](https://github.com/user-attachments/assets/0b9913a1-6aed-4038-a6fc-dbc63584c3ae)
 
-![image](https://github.com/user-attachments/assets/0a048f52-4473-4bb6-9e4e-c8b435870c44)
+![image_2025-01-18_11-08-53 (5)](https://github.com/user-attachments/assets/8e4aeb59-6a4c-4bdb-b4f5-10044a3ed383)
+
 
 Attacker creates a listener and wait victim's download malicious file.
 
-![image](https://github.com/user-attachments/assets/1f1fc670-1372-4476-b946-8164d14347e1)
-
+![image_2025-01-18_11-08-53 (6)](https://github.com/user-attachments/assets/02f103a8-3af4-412b-bccd-7daf825b9617)
 
 3. Victim downloads zip file then extract
 
-![image](https://github.com/user-attachments/assets/24482606-d03c-41ac-b7e0-43b9b3606feb)
+![image_2025-01-18_11-08-53 (7)](https://github.com/user-attachments/assets/30af1e4f-b7fa-4957-9224-0f4cb984b497)
 
-![image](https://github.com/user-attachments/assets/70e2d760-c482-4ca2-814e-53af386f9958)
+![image_2025-01-18_11-08-53 (8)](https://github.com/user-attachments/assets/f7d942b0-ce28-4c72-9171-d5fd372b593d)
+
 
 4. Attacker gains remote code execution
 
-![image](https://github.com/user-attachments/assets/4b15a68f-af35-48f4-8e84-32e1260dfe6f)
+![image_2025-01-18_11-08-53 (9)](https://github.com/user-attachments/assets/25db100b-906b-4b5c-a1cb-1d3247b01893)
 
-![image](https://github.com/user-attachments/assets/b4720dfe-fac8-49e0-9772-e47222095b03)
+![image_2025-01-18_11-08-53 (10)](https://github.com/user-attachments/assets/5f63a189-b819-4119-a87a-98e625762f3d)
+
 
 *Important note*: If crafted file is quarantined, change `MAX_LEN` in python script to 255.
