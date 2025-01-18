@@ -67,3 +67,5 @@ Attacker creates a listener and wait victim's download malicious file.
 ![image](https://github.com/user-attachments/assets/4b15a68f-af35-48f4-8e84-32e1260dfe6f)
 
 ![image](https://github.com/user-attachments/assets/b4720dfe-fac8-49e0-9772-e47222095b03)
+
+*Important note*: If crafted file is quarantined, change `MAX_LEN` in python script to 255.
