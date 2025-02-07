@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/52e1692d-9123-49dc-9cdd-215e55ef5a56)![image](https://github.com/user-attachments/assets/d94c81ab-82d9-4b08-a16e-6f05d2375faa)![image](https://github.com/user-attachments/assets/f7443dfd-4704-4171-aa7d-e50676bdb1f3)![image](https://github.com/user-attachments/assets/4dc8b47a-5743-49f4-934b-f2634019dab9)**Note**: By default, service usb protection `epsdaemon` doesn't run because `libidn11` is missing. Debian-based distro can download and install this library from `http://ftp.debian.org/debian/pool/main/libi/libidn/`
+**Note**: By default, service usb protection `epsdaemon` doesn't run because `libidn11` is missing. Debian-based distro can download and install this library from `http://ftp.debian.org/debian/pool/main/libi/libidn/`
 
 # OS command injection in set USB password
 ## Description and impact
