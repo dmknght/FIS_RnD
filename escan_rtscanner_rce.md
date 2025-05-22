@@ -2,8 +2,8 @@
 Escan Antivirus for Linux has real-time protection program `rtscanner` run as system service. This program has a OS Command injection vulnerability in quarantine file mechanism. An attacker can send crafted file and gain remote code execution with highest privilege as soon as crafted file writes into victim's disk.
 
 **Researchers**:
-- Nông Hoàng Tú <tunh19@fpt.com>
-- Ngô Thu Hồng <hongnt53@fpt.com>
+- Nông Hoàng Tú `<tunh19@fpt.com>`
+- Ngô Thu Hồng `<hongnt53@fpt.com>`
 
 # Root-cause
 1. `rtscanner` failed to quarantine a file that has name **>= 253** characters (max file name's length on Linux is 255). This program uses command `mv` to move file to quarantine folder.
